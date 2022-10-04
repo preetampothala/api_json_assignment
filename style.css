@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui;
+  color: #555;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.countries {
+  display: flex;
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 1s;
+  margin-bottom: 2rem;
+}
+
+.country {
+  background-color: #fff;
+  box-shadow: 0 2rem 5rem 1rem rgba(0, 0, 0, 0.1);
+  font-size: 1.5rem;
+  width: 30rem;
+  border-radius: 0.7rem;
+  margin: 0 3rem;
+  /* overflow: hidden; */
+}
+.neighbours {
+  display: flex;
+  flex-flow: column wrap;
+  font-size: 2rem;
+  opacity: 0;
+  transition: opacity 1s;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.neighbours::before {
+  content: "Neighbour country / Countries";
+  width: 100%;
+  position: relative;
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.neighbour {
+  transform: scale(0.8);
+}
+
+.countryimg {
+  width: 30rem;
+  height: 17rem;
+  object-fit: cover;
+  background-color: #eee;
+  border-top-left-radius: 0.7rem;
+  border-top-right-radius: 0.7rem;
+}
+
+.countrydata {
+  padding: 2.5rem 3.75rem 3rem 3.75rem;
+}
+
+.countryname {
+  font-size: 2rem;
+  margin-bottom: 0.7rem;
+}
+
+.countryregion {
+  font-size: 1.4rem;
+  margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.countryrow:not(:last-child) {
+  margin-bottom: 1rem;
+}
+
+.countryrow span {
+  display: inline-block;
+  margin-right: 1.5rem;
+  font-size: 2rem;
+}
+
+.form-group {
+  margin-bottom: 2rem;
+}
+.form-group input {
+  width: 100%;
+  padding: 15px 10px;
+  border-radius: 5px;
+  border: rgb(228, 228, 228) 1px solid;
+  margin-bottom: 1rem;
+}
+.form-group label {
+  display: block;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
