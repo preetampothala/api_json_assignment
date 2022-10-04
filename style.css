@@ -44,12 +44,13 @@ body {
 }
 .neighbours {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
+  /* flex-direction: row; */
   font-size: 2rem;
   opacity: 0;
   transition: opacity 1s;
   margin-bottom: 2rem;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .neighbours::before {
@@ -64,7 +65,7 @@ body {
 }
 
 .neighbour {
-  transform: scale(0.8);
+  transform: scale(0.9);
 }
 
 .countryimg {
