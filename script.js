@@ -14,6 +14,7 @@ let neighPromises = [];
 let prevCountry;
 clear();
 
+//function to render the data on the webpage
 function html(data, classname) {
   let count = "country";
   // `${classname === "neighbour" ? "<p>Neighbour:</p>" : ``}
@@ -59,20 +60,28 @@ function onEvent(event) {
     prevCountry = countryName;
     clear();
     fetch(`https://restcountries.com/v2/name/${countryName}`)
+      // returns a promise that resolves to a response object
       .then((response) => {
         console.log(response);
+        //if the response.ok is false, throw an error country not found
         if (!response.ok)
           throw new Error(`Country not found ${response.status}`);
         return response.json();
+        // returns a promise that resolves to the data as json object
       })
       .then((data) => {
         console.log(data);
+        // call the html function to render the data on the webpage
         html(data[0], "country");
         let neighbours = data[0].borders;
+        // if the country doesnt have neighbours throw an error and return
         if (!neighbours) {
           throw new Error(`Country has no neighbours`);
           return;
         }
+        console.log(neighbours);
+        // neighbours is an array of 3 letter country codes
+        // loop through the neighbours array, fetch the api data and push the each resolved promise to the neighPromises array
         neighbours.forEach((neighbour) => {
           neighPromises.push(
             fetch(`https://restcountries.com/v2/alpha/${neighbour}`).then(
@@ -81,14 +90,17 @@ function onEvent(event) {
           );
         });
         console.log(neighPromises);
+        // Promise.all takes an array of promises and returns a single promise that resolves to an array of the results of the promises in the array
         return Promise.all(neighPromises);
       })
       .then((response) => {
         console.log(response);
+        // loop through the response array and call the html function to render the neighbour data on the webpage
         response.forEach((neighbour) => {
           html(neighbour, "neighbour");
         });
       })
+      //catch any errors propogated down the chain and log them to the console
       .catch((error) => {
         console.log(error);
         alert(error);
@@ -96,6 +108,7 @@ function onEvent(event) {
   }
 }
 
+//clear the countries and neighbours container and form input
 function clear() {
   neighPromises = [];
   neighboursContainer.classList.add("no-before");
